@@ -248,14 +248,7 @@ def plot_surfaces(F_h,F_s,XL,XR):
         plt.plot(X/1000-0.5*Lngth/1000,bed(X),color='k',linewidth=1,label=r'$\beta$')
 
         # Plot ice-water surface
-        plt.plot(X[Gamma_s[:]-bed(X)>tol]/1000-0.5*Lngth/1000,Gamma_s[:][Gamma_s[:]-bed(X)>tol],color='crimson',linewidth=1)
-
-        if model == 'marine':
-            plt.plot(X[(Gamma_s[:]-bed(X)>tol)&(X>=XR)]/1000-0.5*Lngth/1000,Gamma_s[:][(Gamma_s[:]-bed(X)>tol)&(X>=XR)],color='crimson',linewidth=1,label=r'$s>\beta$')
-            plt.plot(X[(Gamma_s[:]-bed(X)>tol)&(X<XR)]/1000-0.5*Lngth/1000,Gamma_s[:][(Gamma_s[:]-bed(X)>tol)&(X<XR)],'o',color='crimson',markersize=3)
-        else:
-            plt.plot(X[(Gamma_s[:]-bed(X)>tol)&(X>=XR)]/1000-0.5*Lngth/1000,Gamma_s[:][(Gamma_s[:]-bed(X)>tol)&(X>=XR)],color='crimson',linewidth=1,label=r'$s>\beta$')
-
+        plt.plot(X[(Gamma_s[:]-bed(X)>tol)]/1000-0.5*Lngth/1000,Gamma_s[:][(Gamma_s[:]-bed(X)>tol)],'o',color='crimson',markersize=1)
 
         # Plot grounding lines
         plt.plot(np.array([XL/1000-0.5*Lngth/1000]),np.array([np.min(bed(X))-1.0]),marker=r'^',color='k',linestyle='None',markersize=10,label=r'$x_\pm$')

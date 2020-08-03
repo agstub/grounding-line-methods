@@ -71,10 +71,6 @@ the comments at the top of the **make_movie.py** file:
 `ffmpeg -r frame_rate -f image2 -s 1920x1080 -i %01d.png -vcodec libx264 -pix_fmt yuv420p -vf scale=1280:-2 movie.mp4`
 where `frame_rate` is an integer (e.g., 50).
 
-4. **slow_soln.py**: generates the grounding line timeseries assuming a flat
-ice-water surface, given the bed geometry and volume change rate. This
-is the expected grounding line solution in the limit of slow ice flow.
-
 ## 3. Meshes
 The *meshes* directory contains .xml mesh files for the results in the paper.
 All meshes have an element

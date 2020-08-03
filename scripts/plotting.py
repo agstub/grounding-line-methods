@@ -143,7 +143,6 @@ def paperplot_fig2(s_mean,h_mean,x_right,x_left):
 
     t = np.linspace(0,t_final,num=int((t_final/3.154e7)*nt_per_year))
     B = 5*np.array([1495,1528,1563,1597]) #Indices corresponding to free surface plots
-    #B = np.array([0,5,10,20])
 
     plt.figure(figsize=(8,6))
     plt.subplot(211)
@@ -173,7 +172,6 @@ def paperplot_fig2(s_mean,h_mean,x_right,x_left):
     plt.ylim(-4,4)
     plt.xlim(5,7)
     plt.tight_layout()
-    #plt.show()
     plt.savefig('fig2', bbox_inches='tight')
 #-------------------------------------------------------------------------------
 
@@ -243,9 +241,7 @@ def paperplot_fig4(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
 
     t = np.linspace(0,t_final,num=int((t_final/3.154e7)*nt_per_year))
 
-#    B = 2*np.array([105,350,885,1020]) #Indices corresponding to free surface plots
-
-    B = np.array([25,85,220,249])
+    B = 2*np.array([105,350,885,1020]) #Indices corresponding to free surface plots
 
     plt.figure(figsize=(13,6))
     plt.subplot(221)
@@ -309,9 +305,7 @@ def paperplot_fig5(Gamma_s,Gamma_h,x_left,x_right):
     X = X_fine
 
     # Sample time indices
-    #B = 2*np.array([105,350,885,1020])
-
-    B = np.array([25,85,205,249])
+    B = 2*np.array([105,350,885,1020])
 
     plt.figure(figsize=(12,8))
     j=1

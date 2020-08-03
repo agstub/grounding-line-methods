@@ -51,7 +51,7 @@ if model_setup == 'wedge_test':
 if model == 'marine' and tides=='off':
     # Create initial mesh for tides simulation by running the marine model with
     # tides turned off.
-    new_mesh = File('tides_DX+'+str(int(DX_s))+'.xml')
+    new_mesh = File('tides_DX'+str(int(DX_s))+'.xml')
 
 mesh = Mesh('./meshes/'+meshname)
 
