@@ -5,7 +5,7 @@ sys.path.insert(0, './source')
 import matplotlib.pyplot as plt
 import numpy as np
 from geometry import interface, bed
-from params import tol,X_fine,nt_per_year,t_final,Lngth,Hght
+from params import tol,X_fine,nt_per_year,t_final,Lngth,Hght,sea_level
 from hydrology import *
 
 #-------------------------------------------------------------------------------
@@ -180,6 +180,10 @@ def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
 
     # Sample time indices
     B = 5*np.array([1495,1528,1563,1597])
+
+    t = np.linspace(0,t_final,num=int((t_final/3.154e7)*nt_per_year))
+
+
     plt.figure(figsize=(12,8))
     j=1
 
@@ -199,12 +203,15 @@ def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
 
         plt.plot(X/1000,bed(X),color='k',linewidth=1.5,label=r'$\beta$')
 
-
         plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)]/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)],color='crimson',linewidth=1,label=r'$s>\beta$')
         plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)]/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)],'o',color='crimson',markersize=1.5)
 
         plt.plot(np.array([x_left[i]/1000]),np.array(np.min(bed(X))+1-2),marker='^',color='k',linestyle='None',markersize=10,label=r'$x_\pm$')
         plt.plot(np.array([x_right[i]/1000]),np.array(np.min(bed(X))+1-2),marker='^',markersize=10,color='k')
+
+        plt.axhline(y=0.02*sea_level+sl_change(t[i]),xmin=0.8,linestyle='--',color='seagreen',linewidth=1.5,label=r'$\ell$')
+        plt.axhline(y=(1.0/0.917)*(sea_level+sl_change(t[i]))-Hght+10+(1-1.0/0.917)*Gamma_s[:,i][-1],xmin=0.8,linestyle='--',color='purple',linewidth=1.5,label=r'$h_f$')
+
 
         if j == 1:
             plt.plot(X/1000,Gamma_h[:,0]-Hght+ 10,color='k',linestyle='--',linewidth=1.5)
@@ -231,7 +238,7 @@ def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
         j+=1
 
     plt.tight_layout()
-    lgd = plt.legend(fontsize=20,bbox_to_anchor=(0.55, -0.2),ncol=4)
+    lgd = plt.legend(fontsize=20,bbox_to_anchor=(0.95, -0.175),ncol=6)
     plt.savefig('fig3', bbox_extra_artists=(lgd,),bbox_inches='tight')
     plt.close()
 
@@ -298,6 +305,7 @@ def paperplot_fig4(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
     plt.yticks(fontsize=16)
     plt.tight_layout()
     plt.savefig('fig4', bbox_inches='tight')
+    plt.close()
 
 #-------------------------------------------------------------------------------
 
