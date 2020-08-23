@@ -184,7 +184,7 @@ if model_setup == 'test' :
 
 #------------------ Plotting for Figures 2-3 in paper---------------------------
 if model_setup == 'tides_paper':
-    paperplot_fig2(s_mean,h_mean,x_right,x_left)
+    paperplot_fig2(s_mean,h_mean,x_right,x_left,Gamma_h,Gamma_s)
     paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right)
 
 

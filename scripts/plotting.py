@@ -136,16 +136,23 @@ def testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
 #-----------------Plotting for problems in paper (Figs 2-5)---------------------
 #-------------------------------------------------------------------------------
 
-def paperplot_fig2(s_mean,h_mean,x_right,x_left):
+def paperplot_fig2(s_mean,h_mean,x_right,x_left,Gamma_h,Gamma_s):
 
     x_left = x_left/1000.0 - 0.5*Lngth/1000.0
     x_right = x_right/1000.0 - 0.5*Lngth/1000.0
 
+    h_out = Gamma_h[-1,:]
+    s_out = Gamma_s[-1,:]
+
+
     t = np.linspace(0,t_final,num=int((t_final/3.154e7)*nt_per_year))
+
+    h_f = (1.0/0.917)*(sea_level+sl_change(t))+(1-1.0/0.917)*s_out
+
     B = 5*np.array([1495,1528,1563,1597]) #Indices corresponding to free surface plots
 
-    plt.figure(figsize=(8,6))
-    plt.subplot(211)
+    plt.figure(figsize=(8,8))
+    plt.subplot(311)
     plt.title(r'(a)',fontsize=20,loc='left')
     plt.plot(t/(3.154e7/12.0/30.0),s_mean-s_mean[0],'crimson',linewidth=3,linestyle='-',label=r'$\Delta \bar{s}$')
     plt.plot(t/(3.154e7/12.0/30.0),h_mean-h_mean[0],'royalblue',linewidth=3,linestyle='-',label=r'$\Delta \bar{h}$')
@@ -158,9 +165,21 @@ def paperplot_fig2(s_mean,h_mean,x_right,x_left):
     plt.legend(fontsize=16,bbox_to_anchor=(1.0,0.75))
     plt.xlim(5,7)
 
-
-    plt.subplot(212)
+    plt.subplot(312)
     plt.title(r'(b)',fontsize=20,loc='left')
+    plt.plot(t/(3.154e7/12.0/30.0),h_f-Hght,'k',linewidth=3,linestyle='-',label=r'$\Delta h_{\mathrm{out}}$')
+    plt.plot(t/(3.154e7/12.0/30.0),h_out-Hght,'seagreen',linewidth=3,linestyle='--',label=r'$\Delta h_f$')
+    plt.ylabel(r'$z$ (m)',fontsize=20)
+    plt.gca().get_xaxis().set_ticklabels([])
+    plt.xticks(fontsize=16)
+    plt.yticks(fontsize=16)
+    plt.legend(fontsize=16,bbox_to_anchor=(1.0,0.75))
+    plt.xlim(5,7)
+
+
+
+    plt.subplot(313)
+    plt.title(r'(c)',fontsize=20,loc='left')
     plt.fill_between(t/(3.154e7/12.0/30.0),y1=x_left, y2=x_right,facecolor='rosybrown',alpha=1.0,label='partial \ncontact')
     plt.plot(t/(3.154e7/12.0/30.0),x_left,'o',color='k',markersize=5)
     plt.plot(t/(3.154e7/12.0/30.0),x_right,'o',color='k',markersize=5)
@@ -173,6 +192,7 @@ def paperplot_fig2(s_mean,h_mean,x_right,x_left):
     plt.xlim(5,7)
     plt.tight_layout()
     plt.savefig('fig2', bbox_inches='tight')
+    plt.close()
 #-------------------------------------------------------------------------------
 
 def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
