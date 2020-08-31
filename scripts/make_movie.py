@@ -22,17 +22,17 @@ process1 = subprocess.Popen(bashCommand1.split(), stdout=subprocess.PIPE)
 output, error = process1.communicate()
 
 # Load relevant files
-Gamma_s = np.loadtxt('Gamma_s')             # Lower surface
-Gamma_h = np.loadtxt('Gamma_h')             # Upper surface
-x_left = np.loadtxt('x_left')               # Left grounding line
-x_right = np.loadtxt('x_right')             # Right grounding line
+Gamma_s = np.loadtxt('results/Gamma_s')             # Lower surface
+Gamma_h = np.loadtxt('results/Gamma_h')             # Upper surface
+x_left = np.loadtxt('results/x_left')               # Left grounding line
+x_right = np.loadtxt('results/x_right')             # Right grounding line
 
 
 # Create array for plotting
 NX = np.shape(Gamma_s)[0]                                 # (Uniform) Grid spacing
 NT = np.shape(Gamma_s)[1]                                 # Number of time steps
-X = np.loadtxt('X')                          # x-coordinate array
-t = np.loadtxt('t')
+X = np.loadtxt('results/X')                          # x-coordinate array
+t = np.loadtxt('results/t')
 
 # Loop over time steps
 for i in range(NT):
@@ -44,28 +44,35 @@ for i in range(NT):
         plt.title(r'$t=$'+format(t[i]/(3.154e7/12.0/30.0),'.2f')+' d',loc='left',fontsize=20)
 
     # Plot upper surface
-    plt.plot(X/1000-0.5*Lngth/1000,Gamma_h[:,i]-0.98*Hght,color='royalblue',linewidth=1,label=r'$h$')
+    p1, = plt.plot(X/1000-0.5*Lngth/1000,Gamma_h[:,i]-0.98*Hght,color='royalblue',linewidth=1,label=r'$h$')
 
     # Plot ice, water, and bed domains; colored accordingly.
-    p1 = plt.fill_between(X/1000-0.5*Lngth/1000,y1=Gamma_s[:,i], y2=Gamma_h[:,i]-0.98*Hght,facecolor='aliceblue',alpha=1.0)
-    p2 = plt.fill_between(X/1000-0.5*Lngth/1000,bed(X),Gamma_s[:,i],facecolor='slateblue',alpha=0.5)
-    p3 = plt.fill_between(X/1000-0.5*Lngth/1000,-18*np.ones(np.size(X)),bed(X),facecolor='burlywood',alpha=1.0)
+    plt.fill_between(X/1000-0.5*Lngth/1000,y1=Gamma_s[:,i], y2=Gamma_h[:,i]-0.98*Hght,facecolor='aliceblue',alpha=1.0)
+    plt.fill_between(X/1000-0.5*Lngth/1000,bed(X),Gamma_s[:,i],facecolor='slateblue',alpha=0.5)
+    plt.fill_between(X/1000-0.5*Lngth/1000,-18*np.ones(np.size(X)),bed(X),facecolor='burlywood',alpha=1.0)
 
 
     # Plot bed surface
-    plt.plot(X/1000-0.5*Lngth/1000,bed(X),color='k',linewidth=1,label=r'$\beta$')
+    p2, = plt.plot(X/1000-0.5*Lngth/1000,bed(X),color='k',linewidth=1,label=r'$\beta$')
+
 
     if model == 'marine':
         # Plot the 'partial contact zone' for the marine ice sheet problem
-        plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)],color='crimson',linewidth=1,label=r'$s>\beta$')
+        p3, = plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)],color='crimson',linewidth=1,label=r'$s>\beta$')
         plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)],'o',color='crimson',markersize=1.5)
+
     else:
-        plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)],color='crimson',linewidth=1,label=r'$s>\beta$')
+        p3, = plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)],color='crimson',linewidth=1,label=r'$s>\beta$')
 
     # Plot grounding lines
-    plt.plot(np.array([x_left[i]/1000-0.5*Lngth/1000]),np.array([np.min(bed(X))-1.0]),marker=r'^',color='k',linestyle='None',markersize=10,label=r'$x_\pm$')
-
+    p4, = plt.plot(np.array([x_left[i]/1000-0.5*Lngth/1000]),np.array([np.min(bed(X))-1.0]),marker=r'^',color='k',linestyle='None',markersize=10,label=r'$x_\pm$')
     plt.plot(np.array([x_right[i]/1000-0.5*Lngth/1000]),np.array([np.min(bed(X))-1.0]),marker=r'^',markersize=10,color='k')
+
+    if model == 'marine':
+        p5 = plt.axhline(y=0.02*sea_level+sl_change(t[i]),xmin=0.8,linestyle='--',color='seagreen',linewidth=1.5,label=r'$\ell$')
+        p6 = plt.axhline(y=(1.0/0.917)*(sea_level+sl_change(t[i]))-Hght+10+(1-1.0/0.917)*Gamma_s[:,i][-1],xmin=0.8,linestyle='--',color='purple',linewidth=1.5,label=r'$h_f$')
+
+
 
     # Label axes and save png:
     plt.xlabel(r'$x$ (km)',fontsize=20)
@@ -82,6 +89,11 @@ for i in range(NT):
 
     plt.xlim(-0.5*Lngth/1000,0.5*Lngth/1000)
     plt.tight_layout()
-    lgd = plt.legend(fontsize=20,bbox_to_anchor=(1.025, -0.12),ncol=4)
+
+    if model == 'lake':
+        lgd = plt.legend(fontsize=20,bbox_to_anchor=(1.025, -0.12),ncol=4)
+    elif model == 'marine':
+        lgd = plt.legend([p1,p4,p2,p5,p3,p6],[r'$h$',r'$x_\pm$',r'$\beta$',r'$\ell$',r'$s>\beta$',r'$h_f$'],fontsize=20,bbox_to_anchor=(0.915, -0.12),ncol=3)
+
     plt.savefig('pngs/'+str(i),bbox_extra_artists=(lgd,),bbox_inches='tight')
     plt.close()
