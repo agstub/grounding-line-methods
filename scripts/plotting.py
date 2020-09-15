@@ -87,7 +87,6 @@ def testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
     plt.yticks(fontsize=16)
     plt.legend(fontsize=16,loc='lower right',framealpha=1.0)
 
-
     plt.subplot(222)
     p1, = plt.plot(t/3.154e7,s_mean-s_mean[0],'crimson',label=r'$\Delta\bar{s}$',linewidth=3)
     p2, = plt.plot(t/3.154e7,h_mean-h_mean[0],'royalblue',label=r'$\Delta\bar{h}$',linewidth=3)
@@ -121,12 +120,12 @@ def testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
     plt.xlabel(r'$t$ (yr)',fontsize=20)
     plt.gca().yaxis.tick_right()
     plt.gca().yaxis.set_label_position("right")
-
     plt.ylabel(r'$\bar{p}_\mathrm{w}-p_\mathrm{o}$ (kPa)',fontsize=20)
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
-    plt.tight_layout()
-    plt.savefig('lake_test_1', bbox_inches='tight')
+
+    plt.savefig('lake_test_1')
+    plt.close()
 
 #-------------------------------------------------------------------------------
 

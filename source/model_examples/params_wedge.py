@@ -75,7 +75,7 @@ t_final =1*3.154e7                 # Final time (yr*sec_per_year).
 nt = int(nt_per_year*t_final/3.154e7) # Number of time steps
 dt = t_final/nt                       # Timestep size
 
-nx = 4*int(Lngth/DX_s)
+nx = 10*int(Lngth/DX_s)
 X_fine = np.linspace(0,Lngth,num=nx)  # Horizontal coordinate for computing surface
                                       # slopes and plotting.
 

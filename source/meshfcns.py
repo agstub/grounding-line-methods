@@ -263,8 +263,7 @@ def plot_surfaces(F_h,F_s,XL,XR):
         plt.ylim(np.min(bed(X))-2.0,25.0,8)
         plt.xlim(-0.5*Lngth/1000,0.5*Lngth/1000)
         plt.tight_layout()
-        lgd = plt.legend(fontsize=20,bbox_to_anchor=(1.05, -0.12),ncol=4)
-        plt.savefig('surfaces',bbox_extra_artists=(lgd,),bbox_inches='tight')
+        plt.savefig('surfaces',bbox_inches='tight')
         plt.close()
 
 #------------------------------------------------------------------------------
