@@ -12,7 +12,7 @@ sys.path.insert(0, './source')
 import numpy as np
 import matplotlib.pyplot as plt
 from geometry import bed,interface
-from params import Hght,Lngth,model,DX_s,DX_h
+from params import Hght,Lngth,model,DX_s,DX_h,model_setup
 import subprocess
 
 nx = int(Lngth/DX_s)+1                  # Number of grid points in x direction.
@@ -24,6 +24,9 @@ S = interface(X)                        # Ice-water interface array
 #-------------------------------------------------------------------------------
 
 fname = model+'_DX'+str(int(DX_s))+'.geo'
+
+if model_setup == 'wedge_test':
+    fname = 'wedge_DX'+str(int(DX_s))+'.geo'
 
 fI = open(fname,"w")   # Generate mesh file.
 
