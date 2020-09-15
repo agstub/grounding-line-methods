@@ -175,5 +175,5 @@ To generate the mesh for the tidal problem (i.e., tides_DX12 in *meshes* directo
 run the model with the parameter file **params_marine.py** (stored in *source/model_examples*)
 and use the command in the previous paragraph.
 
-#Acknowledgements
+# Acknowledgements
 Many thanks to Ed Bueler's (UAF) who introduced me to free surface Stokes problems during UAF's 2018 International Summer School in Glaciology, and to the UAF Glaciers group (https://glaciers.gi.alaska.edu/) for hosting the summer school. Marc Spiegelman and Tim Creyts (Columbia University, LDEO) advised me throughout this project.
