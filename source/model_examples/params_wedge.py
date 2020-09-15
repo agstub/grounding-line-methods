@@ -1,12 +1,12 @@
 # All model parameters and options are recorded here.
+
+# NOTE: These parameters correspond the subglacial lake 'wedge' benchmark in the paper.
 import numpy as np
 #-------------------------------------------------------------------------------
 #-----------------------------MODEL OPTIONS-------------------------------------
 
-# Default parameters correspond to the test case, which outpouts png plots
-# that should be compared to the plots in the 'test results' folder
-
-model_setup = 'wedge_test'                 # set for 'wedge' tests
+# Flag for bed geometry and lake volume change
+model_setup = 'wedge_test'
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:
 model = 'lake'

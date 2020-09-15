@@ -1,11 +1,12 @@
 # All model parameters and options are recorded here.
+
+# NOTE: These parameters correspond to the subglacial lake problem in the paper.
+
 import numpy as np
 #-------------------------------------------------------------------------------
 #-----------------------------MODEL OPTIONS-------------------------------------
-
-# Parameters corresponding to the subglacial lake problem in the paper.
-
-model_setup = 'lake_paper'                      # Defined for plotting
+# plotting flag
+model_setup = 'lake_paper'
 
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:

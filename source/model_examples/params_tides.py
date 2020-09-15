@@ -1,10 +1,13 @@
 # All model parameters and options are recorded here.
+
+# NOTE: These parameters correspond to the tidal problem in the paper.
+
 import numpy as np
 #-------------------------------------------------------------------------------
 #-----------------------------MODEL OPTIONS-------------------------------------
 
-# Parameters corresponding to the tides problem in the paper.
-model_setup = 'tides_paper'         # Defined for plotting
+# plotting flag
+model_setup = 'tides_paper'       
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:
 

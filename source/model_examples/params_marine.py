@@ -1,10 +1,15 @@
 # All model parameters and options are recorded here.
+
+# NOTE: These parameters correspond to the marine problem in the paper.
+# This is used to construct the initial geometry for the tidal problem.
+
 import numpy as np
 #-------------------------------------------------------------------------------
 #-----------------------------MODEL OPTIONS-------------------------------------
 
-# Parameters corresponding to the tides problem in the paper.
-model_setup = 'marine_paper'         # Defined for plotting
+# flag for constructing mesh for the tidal problem
+# (saves mesh at final time of simulation)
+model_setup = 'marine_paper'
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:
 
