@@ -61,7 +61,7 @@ The *scripts* directory contains:
 1. **create_mesh.py**: generates meshes using **geometry.py** and Gmsh.
 
 2. **plotting.py**: When the default options are used, this is called in **main.py** to creates the 'test' plots (laketest1.png and laketest2.png). These should match the .png's in the *testresults* directory. When
-**params.py** is replaced by either **params_tidespaper.py** or **params_lakepaper.py**
+**params.py** is replaced by either **params_tides.py** or **params_lake.py**
 from *source/model_examples*, this function is called in **main.py** and the relevant figures from the paper are produced.
 
 3. **make_movie.py**: generates .png
