@@ -12,7 +12,7 @@ formulation is described in a manuscript submitted to JFM.
 
 # Dependencies
 ## Required dependencies
-As of 8 April 2020, this code runs with the latest FEniCS Docker image (https://fenicsproject.org/download/).
+As of 15 September 2020, this code runs with the latest FEniCS Docker image (https://fenicsproject.org/download/).
 Docker may be obtained at: https://www.docker.com/. To run the Docker image:
 
 `sudo docker run -ti -p 127.0.0.1:8000:8000 -v $(pwd):/home/fenics/shared -w /home/fenics/shared quay.io/fenicsproject/stable:latest`
@@ -58,7 +58,7 @@ section below.
 
 The *scripts* directory contains:
 
-1. **createmesh.py**: generates meshes using **geometry.py** and Gmsh.
+1. **create_mesh.py**: generates meshes using **geometry.py** and Gmsh.
 
 2. **plotting.py**: When the default options are used, this is called in **main.py** to creates the 'test' plots (laketest1.png and laketest2.png). These should match the .png's in the *testresults* directory. When
 **params.py** is replaced by either **params_tidespaper.py** or **params_lakepaper.py**
@@ -81,7 +81,7 @@ The tides_DX12.xml and marine_DX12.xml meshes have element widths of 12.5 m at t
 surface.
 
 ## 4. Test results
-The *testresults* directory contains two .png images (laketest1.png and laketest2.png) that are produced when
+The *test_results* directory contains two .png images (lake_test_1.png and lake_test_2.png) that are produced when
 the model is run with the default parameters.
 
 # Running the test problem
@@ -96,21 +96,21 @@ To run the test problem:
 
 2. In Docker, run the main file from the parent directory: `python3 ./source/main.py`
 
-Upon completion, the code should produce two .png files (laketest1.png and laketest2.png) that match the .png's in the *testresults* directory.
+Upon completion, the code should produce two .png files (lake_test_1.png and lake_test_2.png) that match the .png's in the *test_results* directory.
 
 # Running problems from the paper
 To reproduce Figures 2-3 in the paper, replace **params.py** with
-**params_tidespaper.py** from *source/model_examples* (renamed to **params.py**) and run the command
+**params_tides.py** from *source/model_examples* (renamed to **params.py**) and run the command
 in the previous section.
 
 To reproduce Figures 4-5 in the paper, replace **params.py** with
-**params_lakepaper.py** from *source/model_examples* (renamed to **params.py**) and run the command
+**params_lake.py** from *source/model_examples* (renamed to **params.py**) and run the command
 in the previous section.
 
 The convergence results can be obtained by modifying
 `DX_s`, `eps_p`, and `nt_per_year` in the **params.py** file as specified in the
 appendix of the manuscript. The "wedge test" examples can be run by setting
-`model_setup="wedge_test"`.
+`model_setup="wedge_test"`. See **params_wedge.py** in the *source/model_examples* directory.
 
 # Output
 

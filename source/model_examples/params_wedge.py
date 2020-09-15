@@ -6,9 +6,7 @@ import numpy as np
 # Default parameters correspond to the test case, which outpouts png plots
 # that should be compared to the plots in the 'test results' folder
 
-model_setup = 'quick_test'                        # set for quick example
-
-#model_setup = 'wedge_test'                 # set for 'wedge' tests
+model_setup = 'wedge_test'                 # set for 'wedge' tests
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:
 model = 'lake'
@@ -27,7 +25,7 @@ realtime_plot = 'on'
 print_convergence = 'off'
 
 # Mesh resolution at the lower boundary
-DX_s = 200.0                    # Element width at lower boundary (in meters)
+DX_s = 100.0                    # Element width at lower boundary (in meters)
                               # Default values are {200,100,50,25,12.5}
                               # This is used for (1) setting the element width in
                               # gendomain.py and (2) selecting the mesh in main.py.

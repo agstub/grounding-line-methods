@@ -46,7 +46,7 @@ else:
     meshname = str(model)+'_DX'+str(int(DX_s))+'.xml'
 
 if model_setup == 'wedge_test':
-    meshname = 'wedge.xml'
+    meshname = 'wedge'+'_DX'+str(int(DX_s))+'.xml'
 
 if model == 'marine' and tides=='off':
     # Create initial mesh for tides simulation by running the marine model with
@@ -178,7 +178,7 @@ if model == 'lake':
 # For the test problem and paper problems only
 
 #------------------------- Plotting for test problem----------------------------
-if model_setup == 'test' :
+if model_setup == 'quick_test' :
     testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw)
     testplot_2(Gamma_s,Gamma_h,x_left,x_right)
 

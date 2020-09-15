@@ -1,8 +1,8 @@
 # This program creates a group of png images of the upper and lower surfaces
 # over time. After running this, change to the 'pngs' directory and run the
-# following bash script, where frames_per_sec is an integer (e.g., 50):
+# following bash script, where frame_rate is an integer (e.g., 50):
 #
-# ffmpeg -r frames_per_sec -f image2 -s 1920x1080 -i %01d.png -vcodec libx264 -pix_fmt yuv420p -vf scale=1280:-2 movie.mp4
+# ffmpeg -r frame_rate -f image2 -s 1920x1080 -i %01d.png -vcodec libx264 -pix_fmt yuv420p -vf scale=1280:-2 movie.mp4
 #
 # (This requires ffmpeg: https://ffmpeg.org/)
 

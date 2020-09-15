@@ -1,4 +1,4 @@
-# These functions produce sample plots for the test problem described in the README.
+# These functions produce plots for the problems described in the README.
 import sys
 sys.path.insert(0, './source')
 
