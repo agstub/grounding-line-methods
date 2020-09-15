@@ -116,7 +116,7 @@ appendix of the manuscript. The "wedge test" examples can be run by setting
 
 Model output is saved in a *results* directory. This includes
 
-1. the Stokes solution (*stokes* subdirectory),
+1. the Stokes solution vtk files (*stokes* subdirectory),
 
 2. upper and lower surface geometry at each timestep (Gamma_s and Gamma_h, resp.),
 
