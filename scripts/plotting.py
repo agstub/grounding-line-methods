@@ -65,7 +65,7 @@ def testplot_2(Gamma_s,Gamma_h,x_left,x_right):
 
     plt.tight_layout()
     lgd = plt.legend(fontsize=20,bbox_to_anchor=(0.55, -0.225),ncol=4)
-    plt.savefig('laketest2', bbox_extra_artists=(lgd,),bbox_inches='tight')
+    plt.savefig('lake_test_2', bbox_extra_artists=(lgd,),bbox_inches='tight')
     plt.close()
 
 #-------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ def testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
     plt.xticks(fontsize=16)
     plt.yticks(fontsize=16)
     plt.tight_layout()
-    plt.savefig('laketest1', bbox_inches='tight')
+    plt.savefig('lake_test_1', bbox_inches='tight')
 
 #-------------------------------------------------------------------------------
 
@@ -386,7 +386,6 @@ def paperplot_fig5(Gamma_s,Gamma_h,x_left,x_right):
     plt.tight_layout()
     lgd = plt.legend(fontsize=20,bbox_to_anchor=(0.55, -0.225),ncol=4)
     plt.savefig('fig5', bbox_extra_artists=(lgd,),bbox_inches='tight')
-    #plt.show()
     plt.close()
 
 
@@ -427,7 +426,6 @@ def gabstract(Gamma_s,Gamma_h,x_left,x_right):
 
     plt.tight_layout()
     plt.savefig('gabstract')
-    #plt.show()
     plt.close()
 
 #-------------------------------------------------------------------------------

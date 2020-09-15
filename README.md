@@ -1,4 +1,4 @@
-sglake-glines
+grounding-line-methods
 
 Author: Aaron Stubblefield (Columbia University, LDEO).
 
