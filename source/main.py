@@ -30,14 +30,16 @@ s_mean0 = np.mean(interface(X_fine)[interface(X_fine)-bed(X_fine)>tol])
 lake_vol_0 = scpint.quad(lambda x: interface(x)-bed(x),0,Lngth,full_output=1)[0]
 #-------------------------------------------------------------------------------
 
-os.mkdir('results')   # Make a directory for the results.
+resultsname = 'results'
+
+os.mkdir(resultsname)   # Make a directory for the results.
 
 if print_convergence == 'off':
     set_log_level(40)    # Suppress Newton convergence information if desired.
 
 # Create VTK files
-vtkfile_u = File('results/stokes/u.pvd')
-vtkfile_p = File('results/stokes/p.pvd')
+vtkfile_u = File(resultsname+'/stokes/u.pvd')
+vtkfile_p = File(resultsname+'/stokes/p.pvd')
 
 # Load mesh
 if model == 'marine' and tides=='on':
@@ -152,15 +154,15 @@ for i in range(nt):
 # Save quantities of interest.
 t_arr = np.linspace(0,t_final,num=int(nt_per_year*t_final/3.154e7))
 
-np.savetxt('results/Gamma_s',Gamma_s)
-np.savetxt('results/Gamma_h',Gamma_h)
-np.savetxt('results/s_mean',s_mean)
-np.savetxt('results/h_mean',h_mean)
-np.savetxt('results/x_left',x_left)
-np.savetxt('results/x_right',x_right)
-np.savetxt('results/P_res',P_res)
-np.savetxt('results/X',X_fine)           # X = spatial coordinate
-np.savetxt('results/t',t_arr)            # t = time coordinate
+np.savetxt(resultsname+'/Gamma_s',Gamma_s)
+np.savetxt(resultsname+'/Gamma_h',Gamma_h)
+np.savetxt(resultsname+'/s_mean',s_mean)
+np.savetxt(resultsname+'/h_mean',h_mean)
+np.savetxt(resultsname+'/x_left',x_left)
+np.savetxt(resultsname+'/x_right',x_right)
+np.savetxt(resultsname+'/P_res',P_res)
+np.savetxt(resultsname+'/X',X_fine)           # X = spatial coordinate
+np.savetxt(resultsname+'/t',t_arr)            # t = time coordinate
 
 
 if model == 'marine' and tides=='off':
@@ -168,8 +170,8 @@ if model == 'marine' and tides=='off':
 
 if model == 'lake':
     # Save quantities of interest unique to the lake problem.
-    np.savetxt('results/dPw',dPw)
-    np.savetxt('results/lake_vol',lake_vol)
+    np.savetxt(resultsname+'/dPw',dPw)
+    np.savetxt(resultsname+'/lake_vol',lake_vol)
 
 
 
