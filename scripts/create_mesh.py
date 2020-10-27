@@ -62,6 +62,6 @@ fI.write('//+ \n Plane Surface(1) = {1};\n')
 fI.close()
 
 # Generate msh files
-bashCommand1 = "gmsh -2 "+fname
+bashCommand1 = "gmsh -2 -format msh2 "+fname
 process1 = subprocess.Popen(bashCommand1.split(), stdout=subprocess.PIPE)
 output, error = process1.communicate()
