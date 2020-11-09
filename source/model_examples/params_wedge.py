@@ -19,13 +19,13 @@ tides = 'off'
 # Turn 'on' or 'off' real-time plotting that saves a png figure called 'surfs' at
 # each time step of the free surface geometry.
 
-realtime_plot = 'on'
+realtime_plot = 'off'
 
 # Turn 'on' or 'off' Newton convergence information:
 print_convergence = 'off'
 
 # Mesh resolution at the lower boundary
-DX_s = 50.0                    # Element width at lower boundary (in meters)
+DX_s = 100.0                    # Element width at lower boundary (in meters)
                               # Default values are {200,100,50,25,12.5}
                               # This is used for (1) setting the element width in
                               # gendomain.py and (2) selecting the mesh in main.py.
@@ -55,7 +55,7 @@ C = 1.0e5                          # Sliding law friction coefficient
 
 # Numerical parameters
 eps_v = 1.0e-15                    # Flow law regularization parameter
-eps_p = 1.0e-13                    # Penalty method parameter
+eps_p = 1.0e-14                    # Penalty method parameter
 quad_degree = 16                   # Quadrature degree for weak forms
 
 tol = 1.0e-3                       # Numerical tolerance for boundary geometry:
@@ -69,13 +69,13 @@ Hght = 1000.0                      # (Initial) Height of the domain
 sea_level = Hght*(917.0/1000.0)    # Sea level elevation.
                                    # (Initial sea level for the tides problem)
 # Time-stepping parameters for non-tidal problems
-nt_per_year = 250                  # Number of timesteps per year.
+nt_per_year = 1000                  # Number of timesteps per year.
 t_final =1*3.154e7                 # Final time (yr*sec_per_year).
 
 nt = int(nt_per_year*t_final/3.154e7) # Number of time steps
 dt = t_final/nt                       # Timestep size
 
-nx = 10*int(Lngth/DX_s)
+nx = 100*int(Lngth/DX_s)
 X_fine = np.linspace(0,Lngth,num=nx)  # Horizontal coordinate for computing surface
                                       # slopes and plotting.
 
