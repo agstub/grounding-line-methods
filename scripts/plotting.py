@@ -179,7 +179,7 @@ def paperplot_fig2(s_mean,h_mean,x_right,x_left,Gamma_h,Gamma_s):
 
     plt.subplot(313)
     plt.title(r'(c)',fontsize=20,loc='left')
-    plt.fill_between(t/(3.154e7/12.0/30.0),y1=x_left, y2=x_right,facecolor='rosybrown',alpha=1.0,label='partial \ncontact')
+    plt.fill_between(t/(3.154e7/12.0/30.0),y1=x_left, y2=x_right,facecolor='steelblue',alpha=1.0,label='extended \ngrounding\nzone')
     plt.plot(t/(3.154e7/12.0/30.0),x_left,'o',color='k',markersize=5)
     plt.plot(t/(3.154e7/12.0/30.0),x_right,'o',color='k',markersize=5)
     plt.xticks(fontsize=16)
@@ -223,7 +223,6 @@ def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
         plt.plot(X/1000,bed(X),color='k',linewidth=1.5,label=r'$\beta$')
 
         plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)]/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)],color='crimson',linewidth=1,label=r'$s>\beta$')
-        plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)]/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)],'o',color='crimson',markersize=1.5)
 
         plt.plot(np.array([x_left[i]/1000]),np.array(np.min(bed(X))+1-2),marker='^',color='k',linestyle='None',markersize=10,label=r'$x_\pm$')
         plt.plot(np.array([x_right[i]/1000]),np.array(np.min(bed(X))+1-2),marker='^',markersize=10,color='k')
