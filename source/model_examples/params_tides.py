@@ -7,7 +7,7 @@ import numpy as np
 #-----------------------------MODEL OPTIONS-------------------------------------
 
 # plotting flag
-model_setup = 'tides_paper'       
+model_setup = 'tides_paper'
 
 # Set model to 'lake' for subglacial lake or 'marine' for marine ice sheet:
 
@@ -43,17 +43,22 @@ if model != 'marine' and model != 'lake':
 
 #-----------------------------MODEL PARAMETERS----------------------------------
 #-------------------------------------------------------------------------------
+# physical units:
+# time - seconds
+# space - meters
+# pressure - pascals
+# mass - kg
 
 # Material parameters
-A0 = 3.1689e-24                    # Glen's law coefficient (ice softness)
+A0 = 3.1689e-24                    # Glen's law coefficient (ice softness, Pa^{-n}/s)
 n = 3.0                            # Glen's law exponent
 rm2 = 1 + 1.0/n - 2.0              # Exponent in variational forms: r-2
-B0 = A0**(-1/n)                    # Ice hardness
-B = (2**((n-1.0)/(2*n)))*B0        # "2*Viscosity" constant in weak form
-rho_i = 917.0                      # Density of ice
-rho_w = 1000.0                     # Density of water
-g = 9.81                           # Gravitational acceleration
-C = 1.0e5                          # Sliding law friction coefficient
+B0 = A0**(-1/n)                    # Ice hardness (Pa s^{1/n})
+B = (2**((n-1.0)/(2*n)))*B0        # "2*Viscosity" constant in weak form (Pa s^{1/n})
+rho_i = 917.0                      # Density of ice (kg/m^3)
+rho_w = 1000.0                     # Density of water (kg/m^3)
+g = 9.81                           # Gravitational acceleration (m/s^2)
+C = 1.0e5                          # Sliding law friction coefficient (Pa s^{1/n}/m)
 
 # Numerical parameters
 eps_v = 1.0e-15                    # Flow law regularization parameter
@@ -65,10 +70,10 @@ tol = 1.0e-3                       # Numerical tolerance for boundary geometry:
                                    # s(x,t) - b(x) <= tol on ice-bed boundary.
 
 # Geometry parameters
-Lngth = 20*1000.0                  # Length of the domain
-Hght = 500.0                       # (Initial) Height of the domain
+Lngth = 20*1000.0                  # Length of the domain (m)
+Hght = 500.0                       # (Initial) Height of the domain (m)
 
-sea_level = Hght*(917.0/1000.0)    # Sea level elevation.
+sea_level = Hght*(917.0/1000.0)    # Sea level elevation (m).
                                    # (Initial sea level for the tides problem)
 
 # Time-stepping parameters for tidal problems
@@ -78,9 +83,8 @@ t_final = 0.02*3.154e7             # Final time (yr*sec_per_year).
 nt = int(nt_per_year*t_final/3.154e7) # Number of time steps
 dt = t_final/nt                       # Timestep size
 
-nx = 10000
-X_fine = np.linspace(0,Lngth,num=nx)  # Horizontal coordinate for computing surface
-                                      # slopes and plotting.
+nx = 10*int(Lngth/DX_s)               # Horizontal coordinate for computing surface
+X_fine = np.linspace(0,Lngth,num=nx)  # slopes, interpolated grounding line positions, and plotting.
 
 # Set positive inflow speed boundary condition for marine ice sheet problem
 U0   = 1000.0/3.154e7                 # Inflow speed 1 km/yr (m/yr / sec/yr)
