@@ -12,7 +12,7 @@ formulation is described in a manuscript submitted to JFM.
 
 # Dependencies
 ## Required dependencies
-As of 15 September 2020, this code runs with the latest FEniCS Docker image (https://fenicsproject.org/download/).
+As of this commit, this code runs with the latest FEniCS Docker image (https://fenicsproject.org/download/).
 Docker may be obtained at: https://www.docker.com/. To run the Docker image:
 
 `sudo docker run -ti -p 127.0.0.1:8000:8000 -v $(pwd):/home/fenics/shared -w /home/fenics/shared quay.io/fenicsproject/stable:latest`
@@ -48,7 +48,7 @@ The model is organized in 7 python files in the *source* directory as follows.
 timeseries and the sea level change timeseries.
 
 7. **main.py** runs the model. It contains the time-stepping loop that
-calls the Stokes solver and mesh-related functions at each timestep.
+calls the Stokes solver and mesh-related functions at each timestep, and saves the output.
 
 The *model_examples* subdirectory contains alternative parameter files
 that produce the results in the manuscript. See the 'Running problems from the paper'
@@ -75,7 +75,7 @@ where `frame_rate` is an integer (e.g., 50).
 The *meshes* directory contains .xml mesh files for the results in the paper.
 All meshes have an element
 width of 250 m at the upper surface. The element width at the lower surface
-is different for each lake_DX.xml file, where the integer DX is the element width at the
+is different for each (model type)_DX.xml file, where the integer DX is the element width at the
 lower surface in meters (rounded down to 12 in the case DX=12.5).
 The tides_DX12.xml and marine_DX12.xml meshes have element widths of 12.5 m at the lower
 surface.
