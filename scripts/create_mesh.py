@@ -16,7 +16,6 @@ from params import Hght,Lngth,model,DX_s,DX_h,model_setup
 import subprocess
 
 nx = int(Lngth/DX_s)+1                  # Number of grid points in x direction.
-ny = 11*int(Hght/1000.0)                # Number of grid points in y direction.
 
 X = np.linspace(0,Lngth,num=nx)         # array for horizontal coordinate
 S = interface(X)                        # Ice-water interface array
