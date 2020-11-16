@@ -132,7 +132,7 @@ def testplot_1(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
 
 
 
-#-----------------Plotting for problems in paper (Figs 2-5)---------------------
+#-----------------Plotting for problems in paper (Figs 2,3,5,6)-----------------
 #-------------------------------------------------------------------------------
 
 def paperplot_fig2(s_mean,h_mean,x_right,x_left,Gamma_h,Gamma_s):
@@ -262,7 +262,7 @@ def paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right):
 
 #-------------------------------------------------------------------------------
 
-def paperplot_fig4(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
+def paperplot_fig5(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
 
     t = np.linspace(0,t_final,num=int((t_final/3.154e7)*nt_per_year))
 
@@ -327,7 +327,7 @@ def paperplot_fig4(s_mean,h_mean,lake_vol,x_right,x_left,dPw):
 
 #-------------------------------------------------------------------------------
 
-def paperplot_fig5(Gamma_s,Gamma_h,x_left,x_right):
+def paperplot_fig6(Gamma_s,Gamma_h,x_left,x_right):
     X = X_fine
 
     # Sample time indices

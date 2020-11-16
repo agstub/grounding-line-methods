@@ -190,9 +190,9 @@ if model_setup == 'tides_paper':
     paperplot_fig3(Gamma_s,Gamma_h,x_left,x_right)
 
 
-#------------------ Plotting for Figures 4-5 in paper---------------------------
+#------------------ Plotting for Figures 5-6 in paper---------------------------
 # Also plots the graphical abstract (gabstract.png)
 if model_setup == 'lake_paper':
-    paperplot_fig4(s_mean,h_mean,lake_vol,x_right,x_left,dPw)
-    paperplot_fig5(Gamma_s,Gamma_h,x_left,x_right)
+    paperplot_fig5(s_mean,h_mean,lake_vol,x_right,x_left,dPw)
+    paperplot_fig6(Gamma_s,Gamma_h,x_left,x_right)
     gabstract(Gamma_s,Gamma_h,x_left,x_right)
