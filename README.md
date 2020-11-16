@@ -2,7 +2,7 @@ grounding-line-methods
 
 Author: Aaron Stubblefield (Columbia University, LDEO).
 
-# Introduction
+# Overview
 This repository contains FEniCS python code for simulating grounding line migration in
 the subglacial lake and marine ice sheet settings. The model is
 isothermal Stokes flow with nonlinear ("Glen's law") viscosity. The contact
@@ -72,7 +72,7 @@ the comments at the top of the **make_movie.py** file:
 where `frame_rate` is an integer (e.g., 50).
 
 ## 3. Meshes
-The *meshes* directory contains .xml mesh files for the results in the paper.
+The *meshes* directory contains the .xml mesh files used for the simulations in the paper.
 All meshes have an element
 width of 250 m at the upper surface. The element width at the lower surface
 is different for each (model type)_DX.xml file, where the integer DX is the element width at the
@@ -103,7 +103,7 @@ To reproduce Figures 2-3 in the paper, replace **params.py** with
 **params_tides.py** from *source/model_examples* (renamed to **params.py**) and run the command
 in the previous section.
 
-To reproduce Figures 4-5 in the paper, replace **params.py** with
+To reproduce Figures 5-6 in the paper, replace **params.py** with
 **params_lake.py** from *source/model_examples* (renamed to **params.py**) and run the command
 in the previous section.
 
