@@ -14,12 +14,13 @@ def bed(x):
 
     #-------------------Default subglacial lake bed geometry--------------------
     if model == 'lake':
-        # Generate Gaussian bed topography
 
         if model_setup == 'wedge_test':
+            # For the wedge test, generate a triangular lake basin
             Bed = 10*np.abs(x-0.5*Lngth)/(0.5*Lngth)-10
 
         else:
+            # For main problem in paper, generate Gaussian bed topography
             Bed = -10.0*(np.exp((-(x-Lngth/2.0)**2)/((0.25*Lngth)**2)))
 
     #-------------------Default marine ice sheet bed geometry-------------------
@@ -44,11 +45,3 @@ def interface(x):
         Int = 0.5*(bed(x)  + np.abs(bed(x) ))
     return Int
 #-------------------------------------------------------------------------------
-#-------------------------------------------------------------------------------
-#
-import matplotlib.pyplot as plt
-from params import X_fine
-
-# plt.plot((X_fine-0.5*Lngth)/1000.0,bed(X_fine))
-# plt.plot((X_fine-0.5*Lngth)/1000.0,interface(X_fine))
-# plt.show()

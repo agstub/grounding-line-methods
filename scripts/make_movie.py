@@ -29,10 +29,10 @@ x_right = np.loadtxt('results/x_right')             # Right grounding line
 
 
 # Create array for plotting
-NX = np.shape(Gamma_s)[0]                                 # (Uniform) Grid spacing
-NT = np.shape(Gamma_s)[1]                                 # Number of time steps
-X = np.loadtxt('results/X')                          # x-coordinate array
-t = np.loadtxt('results/t')
+NX = np.shape(Gamma_s)[0]                           # (Uniform) Grid spacing
+NT = np.shape(Gamma_s)[1]                           # Number of time steps
+X = np.loadtxt('results/X')                         # x-coordinate array
+t = np.loadtxt('results/t')                         # time array
 
 # Loop over time steps
 for i in range(NT):

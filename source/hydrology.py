@@ -43,7 +43,10 @@ def Vol(t,lake_vol_0):
 # Compute rate of subglacial lake volume change.
 def Vdot(lake_vol_0,t):
     # Corresponds to sawtooth volume change
-    dt_fine = 3.154e7/5000.0
+    dt_fine = 3.154e7/5000.0            # 5000 timesteps per year for numerical differentiation
+                                        # of the volume change timeseries. sufficient for lake
+                                        # problems in the paper
+
     Vd = scm.derivative(Vol,t,dx=dt_fine,args=(lake_vol_0,))
     return Vd
 
@@ -51,7 +54,8 @@ def Vdot(lake_vol_0,t):
 #---------------------Define sea level change timeseries------------------------
 def sl_change(t):
     if tides == 'on':
-        SLC = np.sin(4*np.pi*t/(3.154e7/12.0/30.0))
+        SLC = np.sin(4*np.pi*t/(3.154e7/12.0/30.0))  # tidal frequency of 2 per day
     else:
-        SLC = 0.0
+        SLC = 0.0                                    # no sea level change for
+                                                     # long-time marine problem
     return SLC

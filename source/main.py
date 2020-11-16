@@ -84,10 +84,11 @@ for i in range(nt):
         # Set initial conditions.
         s_mean_i = s_mean0                    # Mean ice-water elevation.
         F_h = lambda x: Hght                  # Ice-air surface function
-        F_s = lambda x: interface(x)    # Lower surface function
+        F_s = lambda x: interface(x)          # Lower surface function
 
         if model == 'marine':
-            w = get_zero_m(mesh)              # Placeholder for first iteration.
+            w = get_zero_m(mesh)              # Placeholder for first iteration,
+                                              # used for computing surface elevation functions
         elif model == 'lake':
             w = get_zero_l(mesh)
 
@@ -99,7 +100,7 @@ for i in range(nt):
         w,P_res_i = stokes_solve_marine(mesh,F_h,t)
 
     elif model == 'lake':
-        w,P_res_i = stokes_solve_lake(mesh,lake_vol_0,s_mean_i,F_h,t)
+        w,P_res_i = stokes_solve_lake(mesh,lake_vol_0,s_mean_i,t)
 
     # Solve the surface kinematic equations, move the mesh, and compute the
     # grounding line positions.
@@ -154,13 +155,13 @@ for i in range(nt):
 # Save quantities of interest.
 t_arr = np.linspace(0,t_final,num=int(nt_per_year*t_final/3.154e7))
 
-np.savetxt(resultsname+'/Gamma_s',Gamma_s)
-np.savetxt(resultsname+'/Gamma_h',Gamma_h)
-np.savetxt(resultsname+'/s_mean',s_mean)
+np.savetxt(resultsname+'/Gamma_s',Gamma_s)    # see definition above
+np.savetxt(resultsname+'/Gamma_h',Gamma_h)    # "   "
+np.savetxt(resultsname+'/s_mean',s_mean)      # ...
 np.savetxt(resultsname+'/h_mean',h_mean)
 np.savetxt(resultsname+'/x_left',x_left)
-np.savetxt(resultsname+'/x_right',x_right)
-np.savetxt(resultsname+'/P_res',P_res)
+np.savetxt(resultsname+'/x_right',x_right)    # ...
+np.savetxt(resultsname+'/P_res',P_res)        # "   "
 np.savetxt(resultsname+'/X',X_fine)           # X = spatial coordinate
 np.savetxt(resultsname+'/t',t_arr)            # t = time coordinate
 

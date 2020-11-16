@@ -16,8 +16,9 @@ from dolfin import *
 
 class WaterBoundary(SubDomain):
     # Ice-water boundary.
-    # This boundary is marked first and all of the irrelevant portions are
-    # overwritten by the other boundary markers.
+    # Note: This boundary is marked first and all of the irrelevant portions are
+    # overwritten by the other boundary markers. This results in a "last grounded"
+    # scheme as described in Gagliardini et al. (2016), The Cryosphere.
     def inside(self, x, on_boundary):
         return (on_boundary and (x[1]<0.5*Hght))
 

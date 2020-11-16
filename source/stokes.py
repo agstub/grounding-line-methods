@@ -6,12 +6,12 @@ import numpy as np
 from dolfin import *
 
 def dPi(u,nu):
-        # Penalty function for enforcing impenetrability on the ice-bed boundary.
+        # Derivative of penalty functional for enforcing impenetrability on the ice-bed boundary.
         un = dot(u,nu)
         return un+abs(un)
 
 def Pi(u,nu):
-        # Penalty function for enforcing impenetrability on the ice-bed boundary.
+        # Penalty functional for enforcing impenetrability on the ice-bed boundary.
         un = dot(u,nu)
         return 0.5*(un**2.0+un*abs(un))
 
@@ -20,8 +20,8 @@ def weak_form_lake(u,p,pw,v,q,qw,f,g_lake,ds,nu,T,lake_vol_0,t):
     # Weak form of the subglacial lake problem
 
     # Measures of the lower boundary and ice-water boundary
-    L0 = Constant(assemble(1*ds(4))+assemble(1*ds(3)))
-    L1 = Constant(assemble(1*ds(4)))
+    L0 = Constant(assemble(1*ds(4))+assemble(1*ds(3))) # entire lower boundary
+    L1 = Constant(assemble(1*ds(4)))                   # ice-water boundary
 
     # Nonlinear residual
     Fw = B*((inner(sym(grad(u)),sym(grad(u)))+Constant(eps_v))**(rm2/2.0))*inner(sym(grad(u)),sym(grad(v)))*dx\
@@ -35,7 +35,7 @@ def weak_form_lake(u,p,pw,v,q,qw,f,g_lake,ds,nu,T,lake_vol_0,t):
     return Fw
 
 
-def stokes_solve_lake(mesh,lake_vol_0,s_mean,F_h,t):
+def stokes_solve_lake(mesh,lake_vol_0,s_mean,t):
         # Stokes solver using Taylor-Hood elements and a Lagrange multiplier
         # for the water pressure.
 
@@ -50,8 +50,6 @@ def stokes_solve_lake(mesh,lake_vol_0,s_mean,F_h,t):
         w = Function(W)
         (u,p,pw) = split(w)             # (velocity,pressure,mean water pressure)
         (v,q,qw) = TestFunctions(W)     # test functions corresponding to (u,p,pw)
-
-        h_out = float(F_h(Lngth))
 
         # Define Neumann condition at ice-water interface
         g_lake = Expression('rho_w*g*(s_mean-x[1])',rho_w=rho_w,g=g,s_mean=s_mean,degree=1)
