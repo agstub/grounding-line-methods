@@ -70,7 +70,7 @@ P_res = np.zeros(nt)              # Penalty functional residual
 
 if model == 'lake':
     lake_vol = np.zeros(nt)           # Lake volume
-    dPw = np.zeros(nt)                # Water pressure - hydrostatic pressure
+    dPw = np.zeros(nt)                # Mean water pressure minus cryostatic pressure
 
 t = 0                             # time
 
@@ -95,7 +95,7 @@ for i in range(nt):
         mesh,F_s,F_h,s_mean_i,h_mean_i,XL,XR = mesh_routine(w,mesh,dt)
 
     # Solve the Stoke problem.
-    # Returns solutions "w" and penalty functional residual "Perr_i"
+    # Returns solutions "w" and penalty functional residual "P_res_i"
     if model == 'marine':
         w,P_res_i = stokes_solve_marine(mesh,F_h,t)
 

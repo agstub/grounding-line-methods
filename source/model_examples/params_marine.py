@@ -29,7 +29,7 @@ realtime_plot = 'off'
 print_convergence = 'on'
 
 # Mesh resolution at the lower boundary
-DX_s = 12.5                    # Element width at lower boundary (in meters)
+DX_s = 12.5                   # Element width at lower boundary (in meters)
                               # Default values are {200,100,50,25,12.5}
                               # This is used for (1) setting the element width in
                               # gendomain.py and (2) selecting the mesh in main.py.

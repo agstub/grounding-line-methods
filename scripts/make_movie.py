@@ -57,7 +57,7 @@ for i in range(NT):
 
 
     if model == 'marine':
-        # Plot the 'partial contact zone' for the marine ice sheet problem
+        # Plot the 'extended grounding zone' for the marine ice sheet problem
         p3, = plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0>=x_right[i]/1000.0)],color='crimson',linewidth=1,label=r'$s>\beta$')
         plt.plot(X[(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)]/1000-0.5*Lngth/1000,Gamma_s[:,i][(Gamma_s[:,i]-bed(X)>tol)&(X/1000.0<x_right[i]/1000.0)],'o',color='crimson',markersize=1.5)
 
@@ -69,6 +69,7 @@ for i in range(NT):
     plt.plot(np.array([x_right[i]/1000-0.5*Lngth/1000]),np.array([np.min(bed(X))-1.0]),marker=r'^',markersize=10,color='k')
 
     if model == 'marine':
+        # plot the flotation elevation and sea level for the marine problem
         p5 = plt.axhline(y=0.02*sea_level+sl_change(t[i]),xmin=0.8,linestyle='--',color='seagreen',linewidth=1.5,label=r'$\ell$')
         p6 = plt.axhline(y=(1.0/0.917)*(sea_level+sl_change(t[i]))-Hght+10+(1-1.0/0.917)*Gamma_s[:,i][-1],xmin=0.8,linestyle='--',color='purple',linewidth=1.5,label=r'$h_f$')
 
