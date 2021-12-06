@@ -1,10 +1,10 @@
 #-------------------------------------------------------------------------------
-# Generate 2D domain for subglacial lake problem.
+# Generate 2D initial domain for grounding line problems
 # To convert the msh file to an xml file, use the following bash command
 # in the FEniCS Docker image:
 # dolfin-convert mesh_name.msh mesh_name.xml
 #
-# Note: This always assumes a flat upper surface.
+# Note: This always assumes a horizontal upper surface.
 #-------------------------------------------------------------------------------
 import sys
 sys.path.insert(0, './source')
