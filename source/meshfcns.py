@@ -260,7 +260,7 @@ def plot_surfaces(F_h,F_s,XL,XR):
         plt.xticks(fontsize=16)
         plt.yticks(fontsize=16)
 
-        plt.ylim(np.min(bed(X))-2.0,25.0,8)
+        plt.ylim(np.min(bed(X))-2.0,0.03*Hght,8)
         plt.xlim(-0.5*Lngth/1000,0.5*Lngth/1000)
         plt.tight_layout()
         plt.savefig('surfaces',bbox_inches='tight')
