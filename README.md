@@ -77,7 +77,7 @@ where `frame_rate` is an integer (e.g., 50).
 The *meshes* directory contains the .xml mesh files used for the simulations in the paper.
 All meshes have an element
 width of 250 m at the upper surface. The element width at the lower surface
-is different for each (model type)_DX.xml file, where the integer DX is the element width at the
+is different for each (model type)_DXp.xml file, where the integer p is the element width at the
 lower surface in meters (rounded down to 12 in the case DX=12.5).
 The tides_DX12.xml and marine_DX12.xml meshes have element widths of 12.5 m at the lower
 surface.
@@ -174,8 +174,8 @@ The `mesh_name.msh` file generate by Gmsh is then converted to a .xml file via
 `dolfin-convert mesh_name.msh mesh_name.xml` in the Docker image.
 
 To generate the mesh for the tidal problem (i.e., tides_DX12 in *meshes* directory)
-run the model with the parameter file **params_marine.py** (stored in *source/model_examples*)
-and use the command in the previous paragraph.
+run the model with the parameter file **params_marine.py** (stored in *source/model_examples*).
+Upon completion, this will create a new mesh called 'tides_DX(spacing).xml"
 
 # Acknowledgements
 Many thanks to Ed Bueler (UAF) who introduced me to free surface Stokes problems during UAF's 2018 International Summer School in Glaciology, and to the UAF Glaciers group (https://glaciers.gi.alaska.edu/) for hosting the summer school. Marc Spiegelman and Tim Creyts (Columbia University, LDEO) advised me throughout this project.
